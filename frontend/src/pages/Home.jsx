@@ -48,9 +48,14 @@ const Home = () => {
     setLoading(true);
     try {
       const data = await getNotes(search, page, 9);
-      console.log(data);
+      const totalPages = data.pages || 1;
+      if (page > totalPages) {
+        setPage(1);
+        return;
+      }
+
       setNotes(data.data || []);
-      setTotalPages(data.pages || 1);
+      setTotalPages(totalPages);
     } catch (err) {
       setError("Failed to load notes. Please try again later.");
       console.error(err);
@@ -58,10 +63,21 @@ const Home = () => {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     fetchNotes();
-  }, [search, page]);
+  }, [page]);
+
+  const handleSearch = () => {
+    setPage(1);
+    fetchNotes();
+  };
+
+  useEffect(() => {
+    if (search === "") {
+      fetchNotes();
+      setPage(1);
+    }
+  }, [search]);
 
   if (loading) {
     return (
@@ -84,7 +100,12 @@ const Home = () => {
           </button>
         </div>
         <div>
-          <Search search={search} setSearch={setSearch} setPage={setPage} />
+          <Search
+            search={search}
+            setSearch={setSearch}
+            setPage={setPage}
+            onSearch={handleSearch}
+          />
         </div>
       </div>
 

@@ -6,7 +6,7 @@ import { Toaster } from "react-hot-toast"
 
 function App() {
    return (
-    <>
+    <>                            
     <BrowserRouter>
       <Navbar />
       <Toaster position="bottom-right" reverseOrder={false}/>

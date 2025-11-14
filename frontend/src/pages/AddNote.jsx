@@ -38,23 +38,23 @@ const AddNote = () => {
     >
       <input
         type="text"
+        autoFocus
         value={title}
         placeholder="Title"
         onChange={(e) => setTitle(e.target.value)}
         className="
-    w-full 
-    p-3 
-    h-14 
-    border border-gray-300 
-    rounded-lg 
-    shadow-sm 
-    focus:border-amber-500 
-    focus:ring-2 focus:ring-amber-300 focus:ring-opacity-50
-    transition 
-    duration-200 
-    ease-in-out
-    outline-none
-  "
+          w-full 
+          p-3 
+          h-14 
+          border border-gray-300 
+          rounded-lg 
+          shadow-sm 
+          focus:border-amber-500 
+          focus:ring-2 focus:ring-amber-300 focus:ring-opacity-50
+          transition 
+          duration-200 
+          ease-in-out
+          outline-none"
         required
       />
       <textarea
